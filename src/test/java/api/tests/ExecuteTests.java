@@ -1,6 +1,8 @@
 package api.tests;
 
-import api.utilities.GetNewHope;
+import api.steps.GetFilmsEndpoint;
+import api.steps.GetNewHope;
+import api.steps.GetPeopleEndpoint;
 import jdk.jfr.Description;
 import org.junit.jupiter.api.*;
 
@@ -10,6 +12,8 @@ import static io.restassured.RestAssured.given;
 public class ExecuteTests {
 
     GetNewHope tests = new GetNewHope();
+    GetFilmsEndpoint filmsEndpoint = new GetFilmsEndpoint();
+    GetPeopleEndpoint peopleEndpoint = new GetPeopleEndpoint();
 
     @BeforeAll
     public static void startingExecution() {
@@ -47,5 +51,11 @@ public class ExecuteTests {
     @Description("Luke Skywalker is among pilots that were also flying this kind of starship")
     public void isLukeAmongThePilots() {
        tests.isLukeAmongThePilots();
+    }
+
+    @Test
+    public void newTry() {
+        filmsEndpoint.getCharactersFromNewHope();
+        peopleEndpoint.getCharacterList();
     }
 }

@@ -1,6 +1,7 @@
-package api.utilities;
+package api.steps;
 
 import api.endpoints.Routes;
+import io.restassured.RestAssured;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Assertions;
 
@@ -20,7 +21,7 @@ public class GetNewHope extends Routes {
     private List<String> characterUrls;
 
     public void getResponseForNewHope() {
-        var response = given().when().get(movie_url).then().assertThat().body("title", Matchers.equalTo("A New Hope"));
+        var response = RestAssured.given().when().get(movie_url).then().assertThat().body("title", Matchers.equalTo("A New Hope"));
         characterUrls = response.extract().jsonPath().getList("characters");
         System.out.println(characterUrls);
     }
@@ -28,7 +29,7 @@ public class GetNewHope extends Routes {
     public void findBiggsDarklighter() {
         getResponseForNewHope();
         for (String characterUrl : characterUrls) {
-            var getCharacterObject = given().when().get(characterUrl).then();
+            var getCharacterObject = RestAssured.given().when().get(characterUrl).then();
             name = getCharacterObject.extract().jsonPath().getString("name");
             if (name.equals(wantedPerson)) {
                 System.out.println("Found you");
@@ -42,7 +43,7 @@ public class GetNewHope extends Routes {
     public void findStarship() {
         findBiggsDarklighter();
         for (String starshipUrl : starshipUrls) {
-            var getStarshipObject = given().when().get(starshipUrl).then();
+            var getStarshipObject = RestAssured.given().when().get(starshipUrl).then();
             starshipName = getStarshipObject.extract().jsonPath().getString("name");
             starshipClass = getStarshipObject.extract().jsonPath().getString("starship_class");
             pilotUrls = getStarshipObject.extract().jsonPath().getList("pilots");
@@ -58,7 +59,7 @@ public class GetNewHope extends Routes {
     public void isLukeAmongThePilots() {
         checkStarshipClass();
         for (String pilot : pilotUrls) {
-            var getPilotObject = given().when().get(pilot).then();
+            var getPilotObject = RestAssured.given().when().get(pilot).then();
             pilotName = getPilotObject.extract().jsonPath().getString("name");
             if (pilotName.equals("Luke Skywalker")) {
                 Assertions.assertEquals("Luke Skywalker", pilotName);
