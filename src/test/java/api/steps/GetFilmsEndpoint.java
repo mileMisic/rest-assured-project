@@ -5,12 +5,13 @@ import api.endpoints.responses.pojo.Films;
 import io.restassured.RestAssured;
 
 public class GetFilmsEndpoint extends Routes {
+    private final Films films;
+    public GetFilmsEndpoint(Films films) {
+        this.films = films;
+    }
 
-    Films films = new Films();
-
-    public void getCharactersFromNewHope() {
-        var response = RestAssured.given().when().get(movie_url).then();
-        films.setCharacters(response.extract().jsonPath().getList("characters"));
-        System.out.println(films.setCharacters(response.extract().jsonPath().getList("characters")));
+    public void setCharactersFromMovieNewHope() {
+        var filmsEndpointResponse = RestAssured.given().when().get(movie_url).then();
+        films.setCharacters(filmsEndpointResponse.extract().jsonPath().getList("characters"));
     }
 }
