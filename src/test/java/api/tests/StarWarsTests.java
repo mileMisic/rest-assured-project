@@ -5,17 +5,12 @@ import api.endpoints.responses.pojo.Films;
 import api.endpoints.responses.pojo.People;
 import api.endpoints.responses.pojo.Starships;
 import api.steps.GetFilmsEndpoint;
-import api.steps.GetNewHope;
 import api.steps.GetPeopleEndpoint;
 import api.steps.GetStarshipsEndpoint;
 import org.junit.jupiter.api.*;
 
-import static io.restassured.RestAssured.given;
-
 
 public class StarWarsTests {
-
-    GetNewHope tests = new GetNewHope();
     Films films = new Films();
     People people = new People();
     Starships starships = new Starships();
@@ -31,6 +26,7 @@ public class StarWarsTests {
     @Test
     public void newTry() {
         filmsEndpoint.setCharactersFromMovieNewHope();
+        Assertions.assertEquals(Constants.NEW_HOPE, films.getTitle());
         peopleEndpoint.getCharacterList();
         peopleEndpoint.isBiggsDarklighterAmongCharacters();
         starshipsEndpoint.findStarshipName();

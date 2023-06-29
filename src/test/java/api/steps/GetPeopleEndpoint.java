@@ -4,8 +4,6 @@ import api.constants.Constants;
 import api.endpoints.responses.pojo.Films;
 import api.endpoints.responses.pojo.People;
 import api.endpoints.responses.pojo.Starships;
-import io.restassured.RestAssured;
-import org.junit.jupiter.api.Assertions;
 
 import static io.restassured.RestAssured.given;
 
