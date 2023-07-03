@@ -5,47 +5,44 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 public class Films {
-    @JsonProperty("title")
-    private String title;
-    @JsonProperty("episode_id")
-    private String episodeId;
-    @JsonProperty("opening_crawl")
-    private String openingCrawl;
-    @JsonProperty("director")
-    private String director;
-    @JsonProperty("producer")
-    private String producer;
-    @JsonProperty("release_date")
-    private String releaseDate;
-    @JsonProperty("characters")
-    private List<String> characters;
-    @JsonProperty("starships")
-    private List<String> starships;
-    @JsonProperty("vehicles")
-    private List<String> vehicles;
-    @JsonProperty("species")
-    private List<String> species;
-    @JsonProperty("created")
-    private String created;
-    @JsonProperty("edited")
-    private String edited;
-    @JsonProperty("url")
-    private String url;
+    @JsonProperty("count")
+    private int count;
+    @JsonProperty("next")
+    private String next;
+    @JsonProperty("previous")
+    private String previous;
+    @JsonProperty("results")
+    private List<Film> results;
 
-    public String getTitle() {
-        return title;
+    public int getCount() {
+        return count;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setCount(int count) {
+        this.count = count;
     }
 
-    public List<String> getCharacters() {
-        return characters;
+    public String getNext() {
+        return next;
     }
 
-    public List<String> setCharacters(List<String> characters) {
-        this.characters = characters;
-        return characters;
+    public void setNext(String next) {
+        this.next = next;
+    }
+
+    public String getPrevious() {
+        return previous;
+    }
+
+    public void setPrevious(String previous) {
+        this.previous = previous;
+    }
+
+    public List<Film> getResults() {
+        return results;
+    }
+
+    public void setResults(List<Film> results) {
+        this.results = results;
     }
 }

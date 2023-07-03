@@ -1,6 +1,6 @@
 package api.constants;
 
-public interface Constants {
+public class Constants {
 
 
     public static final String NEW_HOPE = "A New Hope";
