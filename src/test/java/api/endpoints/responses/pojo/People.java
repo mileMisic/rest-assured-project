@@ -5,43 +5,44 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 public class People {
-    private String name;
-    private String height;
-    private String mass;
-    @JsonProperty("hair_color")
-    private String hairColor;
-    @JsonProperty("skin_color")
-    private String skinColor;
-    @JsonProperty("eye_color")
-    private String eyeColor;
-    @JsonProperty("birth_year")
-    private String birthYear;
-    private String gender;
-    @JsonProperty("homeworld")
-    private String homeWorld;
-    private List<String> films;
-    private List<String> species;
-    private List<String> vehicles;
-    private List<String> starships;
-    private String created;
-    private String edited;
-    private String url;
+    @JsonProperty("count")
+    private int count;
+    @JsonProperty("next")
+    private String next;
+    @JsonProperty("previous")
+    private String previous;
+    @JsonProperty("results")
+    private List<Person> results;
 
-    public String getName() {
-        return name;
+    public int getCount() {
+        return count;
     }
 
-    public String setName(String name) {
-        this.name = name;
-        return name;
+    public void setCount(int count) {
+        this.count = count;
     }
 
-    public List<String> getStarships() {
-        return starships;
+    public String getNext() {
+        return next;
     }
 
-    public List<String> setStarships(List<String> starships) {
-        this.starships = starships;
-        return starships;
+    public void setNext(String next) {
+        this.next = next;
+    }
+
+    public String getPrevious() {
+        return previous;
+    }
+
+    public void setPrevious(String previous) {
+        this.previous = previous;
+    }
+
+    public List<Person> getCharacters() {
+        return results;
+    }
+
+    public void setCharacters(List<Person> results) {
+        this.results = results;
     }
 }

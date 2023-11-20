@@ -5,67 +5,44 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 public class Starships {
-    private String name;
-    private String model;
+    @JsonProperty("count")
+    private int count;
+    @JsonProperty("next")
+    private String next;
+    @JsonProperty("previous")
+    private String previous;
+    @JsonProperty("results")
+    private List<Starship> results;
 
-    private String manufacturer;
-    @JsonProperty("cost_in_credits")
-    private String costInCredits;
-
-    private String length;
-    @JsonProperty("max_atmosphering_speed")
-    private String maxAtmoSpeed;
-
-    private String crew;
-
-    private String passengers;
-    @JsonProperty("cargo_capacity")
-    private String cargoCapacity;
-
-    private String consumables;
-    @JsonProperty("hyperdrive_rating")
-    private String hyperdriveRating;
-    @JsonProperty("MGLT")
-    private String mglt;
-
-    @JsonProperty("starship_class")
-    private String starshipClass;
-
-
-    private List<String> pilots;
-
-    private List<String> films;
-
-    private String created;
-
-    private String edited;
-
-    private String url;
-
-    public String getName() {
-        return name;
+    public int getCount() {
+        return count;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCount(int count) {
+        this.count = count;
     }
 
-
-    public String getStarshipClass() {
-        return starshipClass;
+    public String getNext() {
+        return next;
     }
 
-    public void setStarshipClass(String starshipClass) {
-        this.starshipClass = starshipClass;
+    public void setNext(String next) {
+        this.next = next;
     }
 
-
-    public List<String> getPilots() {
-        return pilots;
+    public String getPrevious() {
+        return previous;
     }
 
-    public void setPilots(List<String> pilots) {
-        this.pilots = pilots;
+    public void setPrevious(String previous) {
+        this.previous = previous;
     }
 
+    public List<Starship> getStarships() {
+        return results;
+    }
+
+    public void setStarships(List<Starship> results) {
+        this.results = results;
+    }
 }

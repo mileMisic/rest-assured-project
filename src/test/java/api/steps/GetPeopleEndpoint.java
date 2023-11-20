@@ -1,54 +1,55 @@
 package api.steps;
 
-import api.constants.Constants;
+import api.endpoints.RestService;
 import api.endpoints.responses.pojo.Film;
-import api.endpoints.responses.pojo.Films;
-import api.endpoints.responses.pojo.People;
-import api.endpoints.responses.pojo.Starships;
+import api.endpoints.responses.pojo.Person;
+import api.endpoints.responses.pojo.Starship;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import static io.restassured.RestAssured.given;
 
-public class GetPeopleEndpoint {
+public class GetPeopleEndpoint extends RestService {
     private static final Logger logger = LogManager.getLogger(GetPeopleEndpoint.class);
-    private Film film;
-    private Films films;
-    private final People people;
-    private final Starships starships;
 
-    public GetPeopleEndpoint(Film film, Films films, People people, Starships starships) {
+    @Override
+    protected String getBasePath() {
+        return "people/";
+    }
+
+    private final Film film;
+    private final Person person;
+    private final Starship starship;
+
+    public GetPeopleEndpoint(Film film, Person person, Starship starship) {
         this.film = film;
-        this.films = films;
-        this.people = people;
-        this.starships = starships;
+        this.person = person;
+        this.starship = starship;
     }
 
-    public void getCharacterList() {
-        film.getCharacters();
-    }
-
-    public void isBiggsDarklighterAmongCharacters() {
+    public boolean isBiggsDarklighterAmongCharacters(String character) {
         for (String characterUrl : film.getCharacters()) {
-            var getPeopleEndpointResponse = given().when().get(characterUrl).as(People.class);
-            String characterName = getPeopleEndpointResponse.getName();
-            if (characterName.equals(Constants.BIGGS_DARKLIGHTER)) {
+            var peopleEndpointResponse = given().when().get(characterUrl).as(Person.class);
+            String characterName = peopleEndpointResponse.getName();
+            if (characterName.equals(character)) {
                 logger.info("Found you, Biggs Darklighter!");
-                //people.setStarships(getPeopleEndpointResponse.extract().jsonPath().getList("starships"));
-                break;
+                person.setStarships(peopleEndpointResponse.getStarships());
+                return true;
             }
         }
+        return false;
     }
 
-
-    public void isLukeAmongThePilots() {
-        for (String pilot : starships.getPilots()) {
-            var getPeopleEndpointResponse = given().when().get(pilot).then();
-            String pilotName = people.setName(getPeopleEndpointResponse.extract().jsonPath().getString("name"));
-            if (pilotName.equals(Constants.LUKE_SKYWALKER)) {
-                logger.info("Use the force, Luke!");
-                break;
+    public boolean isLukeAmongThePilots(String lukeSkywalker) {
+        for (String pilot : starship.getPilots()) {
+            var peopleEndpointResponse = given().when().get(pilot).as(Person.class);
+            String pilotName = peopleEndpointResponse.getName();
+            if (pilotName.equals(lukeSkywalker)) {
+                person.setName(pilotName);
+                logger.info(pilotName);
+                return true;
             }
         }
+        return false;
     }
 }

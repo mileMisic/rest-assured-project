@@ -47,13 +47,9 @@ public class Film  {
         return characters;
     }
 
-    public List<String> setCharacters(List<String> characters) {
+    public Film setCharacters(List<String> characters) {
         this.characters = characters;
-        return characters;
-    }
-
-    public void setCharacters() {
-        this.characters = characters;
+        return this;
     }
 
     public String getEpisodeId() {
