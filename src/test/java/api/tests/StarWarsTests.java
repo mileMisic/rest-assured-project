@@ -30,11 +30,11 @@ public class StarWarsTests {
     public void StarWarsTest() {
         filmsEndpoint.findFilmNewHope(Constants.NEW_HOPE);
         filmsEndpoint.setCharactersFromFilmNewHope();
-        Assertions.assertTrue(peopleEndpoint.isBiggsDarklighterAmongCharacters(Constants.BIGGS_DARKLIGHTER), "Biggs Darklighter is not among characters");
+        Assertions.assertTrue(peopleEndpoint.isNameAmongCharacters(Constants.BIGGS_DARKLIGHTER), "Biggs Darklighter is not among characters");
         starshipsEndpoint.getStarshipDetails();
         starshipsEndpoint.displayStarshipNameBiggsFlewOn();
         Assertions.assertEquals(Constants.STARFIGHTER, starshipsEndpoint.getStarshipClass(), "Starship class found is not Starfighter!");
-        Assertions.assertTrue(peopleEndpoint.isLukeAmongThePilots(Constants.LUKE_SKYWALKER), "Luke Skywalker is not among the pilots");
+        Assertions.assertTrue(peopleEndpoint.isNameAmongThePilots(Constants.LUKE_SKYWALKER), "Luke Skywalker is not among the pilots");
     }
 
     @AfterAll

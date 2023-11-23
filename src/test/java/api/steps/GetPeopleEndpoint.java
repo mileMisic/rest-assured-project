@@ -7,6 +7,8 @@ import api.endpoints.responses.pojo.Starship;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.List;
+
 import static io.restassured.RestAssured.given;
 
 public class GetPeopleEndpoint extends RestService {
@@ -27,12 +29,12 @@ public class GetPeopleEndpoint extends RestService {
         this.starship = starship;
     }
 
-    public boolean isBiggsDarklighterAmongCharacters(String character) {
+    public boolean isNameAmongCharacters(String name) {
         for (String characterUrl : film.getCharacters()) {
             var peopleEndpointResponse = given().when().get(characterUrl).as(Person.class);
             String characterName = peopleEndpointResponse.getName();
-            if (characterName.equals(character)) {
-                logger.info("Found you, Biggs Darklighter!");
+            if (characterName.equals(name)) {
+                logger.info("%s name is found".formatted(name));
                 person.setStarships(peopleEndpointResponse.getStarships());
                 return true;
             }
@@ -40,11 +42,11 @@ public class GetPeopleEndpoint extends RestService {
         return false;
     }
 
-    public boolean isLukeAmongThePilots(String lukeSkywalker) {
+    public boolean isNameAmongThePilots(String name) {
         for (String pilot : starship.getPilots()) {
             var peopleEndpointResponse = given().when().get(pilot).as(Person.class);
             String pilotName = peopleEndpointResponse.getName();
-            if (pilotName.equals(lukeSkywalker)) {
+            if (pilotName.equals(name)) {
                 person.setName(pilotName);
                 logger.info(pilotName);
                 return true;
